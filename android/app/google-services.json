@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "306788893128",
+    "project_id": "bookshop-2cec3",
+    "storage_bucket": "bookshop-2cec3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:306788893128:android:9742a178c14ff697d600fd",
+        "android_client_info": {
+          "package_name": "com.example.onlinebookhubapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNK7WVO8sW9SjCVLQCQWlA-QWw5MJ0XVg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

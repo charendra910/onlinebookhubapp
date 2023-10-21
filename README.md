@@ -1,16 +1,3 @@
-# onlinebookhubapp
+# Online Book Hub
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Online Book Hub Shopping App is a dedicated mobile application designed to enhance your book-buying and reading experience. It offers a convenient and user-friendly platform for book enthusiasts to browse, purchase, and enjoy a wide range of books in various formats, including e-books and physical copies.

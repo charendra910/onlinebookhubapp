@@ -75,7 +75,7 @@ class OnSaleScreen extends StatelessWidget {
                                 Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=> BookDetailPage(description: 'This book is the best for explaining to kids science and engineering.', imageUrl: "https://m.media-amazon.com/images/I/91ZIq6xEqGL._AC_UF1000,1000_QL80_.jpg", price: double.parse(book['price']), title: book['name'],),),);
 
                       },
-                      child: OnSaleWidget(name:book['name'],weight: book['weight'],price: book['price'],salePrice: '3.4',));
+                      child: OnSaleWidget(image:book['img'], name:book['name'],weight: book['weight'],price: book['price'],salePrice: book['price'],));
                   }).toList());
           })
     );

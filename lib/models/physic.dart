@@ -3,12 +3,12 @@ import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:onlinebookhubapp/services/utils.dart';
 
 
-class prod extends StatefulWidget {
+class physic extends StatefulWidget {
   @override
-  State<prod> createState() => _MyAppState();
+  State<physic> createState() => _MyAppState();
 }
 
-class _MyAppState extends State<prod> {
+class _MyAppState extends State<physic> {
   @override
   Widget build(BuildContext context) {
     final Color color = Utils(context).color;
@@ -33,12 +33,12 @@ class _MyAppState extends State<prod> {
           child: Center(
             child: ProductDetails(
               imageUrl:
-                  'https://files.realpython.com/media/python-basics-3d-transparent-centered.1600697390a8.png',
-              name: 'Python',
-              brand: 'Asmita',
+                  'https://5.imimg.com/data5/HX/TD/MY-14344381/nootan-physics-xii-book.png',
+              name: 'Physic',
+              brand: 'Nima',
               description:
-                  "Python is widely considered among the easiest programming languages for beginners to learn. If you're interested in learning a programming language, Python is a good place to start.",
-              price: 19.99,
+                  "Physics is the branch of science that deals with the structure of matter and how the fundamental constituents of the universe interact. It studies objects ranging from the very small using quantum mechanics to the entire universe using general relativity.",
+              price: 20.99,
               quantity: 5,
             ),
           ),

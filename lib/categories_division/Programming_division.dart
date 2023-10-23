@@ -1,19 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:onlinebookhubapp/categories_division/Programming_division.dart';
-import 'package:onlinebookhubapp/categories_division/astronomy_division.dart';
-import 'package:onlinebookhubapp/categories_division/biology_division.dart';
-import 'package:onlinebookhubapp/categories_division/chemistry_division.dart';
-import 'package:onlinebookhubapp/categories_division/history_division.dart';
-import 'package:onlinebookhubapp/categories_division/nursery_division.dart';
-import 'package:onlinebookhubapp/models/biology.dart';
+import 'package:onlinebookhubapp/models/nursery.dart';
 import 'package:onlinebookhubapp/models/product_detail1.dart';
 
-class CategoriesScreen extends StatelessWidget {
+class ProgrammingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(child: Text('Categories')),
+        title: Center(child: Text('Product Type')),
       ),
       body: Column(
         children: [
@@ -29,7 +23,39 @@ class CategoriesScreen extends StatelessWidget {
                   InkWell(
                     onDoubleTap: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => NurseryScreen(),
+                        builder: (context) => prod(),
+                      ));
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.blue, width: 2),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            'assets/images/cat/nur1.png',
+                            width: 100,
+                            height: 100,
+                          ),
+                          SizedBox(height: 10),
+                          Text(
+                            'Programming 1',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.blue,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  InkWell(
+                    onDoubleTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => prod(),
                       ));
                     },
                     child: Container(
@@ -47,7 +73,7 @@ class CategoriesScreen extends StatelessWidget {
                           ),
                           SizedBox(height: 10),
                           Text(
-                            'Nursery',
+                            'Programming 2',
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
@@ -61,39 +87,7 @@ class CategoriesScreen extends StatelessWidget {
                   InkWell(
                     onDoubleTap: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => HistoryScreen(),
-                      ));
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.blue, width: 2),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset(
-                            'assets/images/cat/history.png',
-                            width: 100,
-                            height: 100,
-                          ),
-                          SizedBox(height: 10),
-                          Text(
-                            'History',
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.blue,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  InkWell(
-                    onDoubleTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => BiologyScreen(),
+                        builder: (context) => prod(),
                       ));
                     },
                     child: Container(
@@ -111,7 +105,7 @@ class CategoriesScreen extends StatelessWidget {
                           ),
                           SizedBox(height: 10),
                           Text(
-                            'Biology',
+                            'Programming 3',
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
@@ -125,7 +119,7 @@ class CategoriesScreen extends StatelessWidget {
                   InkWell(
                     onDoubleTap: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => ProgrammingScreen(),
+                        builder: (context) => prod(),
                       ));
                     },
                     child: Container(
@@ -143,7 +137,7 @@ class CategoriesScreen extends StatelessWidget {
                           ),
                           SizedBox(height: 10),
                           Text(
-                            'Programming',
+                            'Programming 4',
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
@@ -154,70 +148,7 @@ class CategoriesScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  InkWell(
-                     onDoubleTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => ChemistryScreen(),
-                      ));
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.blue, width: 2),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset(
-                            'assets/images/cat/chem.png',
-                            width: 100,
-                            height: 100,
-                          ),
-                          SizedBox(height: 10),
-                          Text(
-                            'Chemistry',
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.blue,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  InkWell(
-                     onDoubleTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => AstronomyScreen(),
-                      ));
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.blue, width: 2),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset(
-                            'assets/images/cat/str1.png',
-                            width: 100,
-                            height: 100,
-                          ),
-                          SizedBox(height: 10),
-                          Text(
-                            'Astronomy',
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.blue,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+                 
                 ],
               ),
             ),

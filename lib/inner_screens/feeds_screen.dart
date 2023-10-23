@@ -1,9 +1,16 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:onlinebookhubapp/models/astronomy.dart';
+import 'package:onlinebookhubapp/models/biology.dart';
+import 'package:onlinebookhubapp/models/chemistry.dart';
+import 'package:onlinebookhubapp/models/math.dart';
+import 'package:onlinebookhubapp/models/physic.dart';
+import 'package:onlinebookhubapp/models/product_detail1.dart';
 import 'package:onlinebookhubapp/services/utils.dart';
 import 'package:onlinebookhubapp/widgets/feed_items.dart';
 import 'package:onlinebookhubapp/widgets/text_widget.dart';
+
+import '../screens/home_screen.dart';
 
 class FeedsScreen extends StatefulWidget {
   static const routeName = "/FeedsScreenState";
@@ -64,26 +71,27 @@ class _FeedsScreenState extends State<FeedsScreen> {
                   },
                   decoration: InputDecoration(
                     focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide:
-                            const BorderSide(color: Colors.greenAccent, width: 1),
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide:
+                          const BorderSide(color: Colors.greenAccent, width: 1),
                     ),
                     enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide:
-                            const BorderSide(color: Colors.greenAccent, width: 1),
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide:
+                          const BorderSide(color: Colors.greenAccent, width: 1),
                     ),
                     hintText: "What's in your mind?",
                     prefixIcon: const Icon(Icons.search),
                     suffix: IconButton(
-                     onPressed: (){
-                      _searchTextController!.clear();
-                      _searchTextFocusNode.unfocus();
-                     },
-                     icon: Icon(
-                      Icons.close,
-                      color: _searchTextFocusNode.hasFocus ? Colors.red : color,
-                     ),
+                      onPressed: () {
+                        _searchTextController!.clear();
+                        _searchTextFocusNode.unfocus();
+                      },
+                      icon: Icon(
+                        Icons.close,
+                        color:
+                            _searchTextFocusNode.hasFocus ? Colors.red : color,
+                      ),
                     ),
                   ),
                 ),
@@ -94,12 +102,78 @@ class _FeedsScreenState extends State<FeedsScreen> {
               physics: const NeverScrollableScrollPhysics(),
               crossAxisCount: 2,
               padding: EdgeInsets.zero,
-              //crossAxisSpacing: 10,
+              // crossAxisSpacing: 10,
               childAspectRatio: size.width / (size.height * 0.59),
-              children: List.generate(10, (index) {
-                return const FeedsWidget();
-              }),
-            ),
+              children: [
+                InkWell(
+                  onDoubleTap: () {
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) => chemistry()));
+                  },
+                  child: FeedsWidget(
+                      salePrice: '1.2',
+                      name: "Chemistry",
+                      image:
+                          'https://images.blinkist.io/images/books/5f0d636f6cee0700061678d1/1_1/470.jpg'),
+                ),
+                //Wrap the widget with InkWell onTap
+                InkWell(
+                  onDoubleTap: () {
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) => physic()));
+                  },
+                  child: FeedsWidget(
+                      salePrice: '2.5',
+                      name: "Physics",
+                      image:
+                          'https://5.imimg.com/data5/HX/TD/MY-14344381/nootan-physics-xii-book.png'),
+                ),
+                InkWell(
+                  onDoubleTap: () {
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) => biology()));
+                  },
+                  child: FeedsWidget(
+                      salePrice: '3.0',
+                      name: "Biology",
+                      image:
+                          'https://www.theodist.com/Images/ProductImages/Large/78775.jpg'),
+                ),
+                InkWell(
+                  onDoubleTap: () {
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) => maths()));
+                  },
+                  child: FeedsWidget(
+                      salePrice: '1.8',
+                      name: "Mathematics",
+                      image:
+                          'https://yellowbirdpublications.com/wp-content/uploads/2022/10/Magic-with-Maths-7-Front-01-min.png'),
+                ),
+                InkWell(
+                  onDoubleTap: () {
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) => astronomy()));
+                  },
+                  child: FeedsWidget(
+                      salePrice: '3.8',
+                      name: "Astronomy",
+                      image:
+                          'https://www.planetary-astronomy-and-imaging.com/wp-content/uploads/2020/12/couv1_small.png'),
+                ),
+                InkWell(
+                  onDoubleTap: () {
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) => prod()));
+                  },
+                  child: FeedsWidget(
+                      salePrice: '4.6',
+                      name: "Python",
+                      image:
+                          'https://files.realpython.com/media/python-basics-3d-transparent-centered.1600697390a8.png'),
+                ),
+              ],
+            )
           ],
         ),
       ),

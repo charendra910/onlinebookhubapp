@@ -3,12 +3,12 @@ import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:onlinebookhubapp/services/utils.dart';
 
 
-class prod extends StatefulWidget {
+class maths extends StatefulWidget {
   @override
-  State<prod> createState() => _MyAppState();
+  State<maths> createState() => _MyAppState();
 }
 
-class _MyAppState extends State<prod> {
+class _MyAppState extends State<maths> {
   @override
   Widget build(BuildContext context) {
     final Color color = Utils(context).color;
@@ -33,12 +33,12 @@ class _MyAppState extends State<prod> {
           child: Center(
             child: ProductDetails(
               imageUrl:
-                  'https://files.realpython.com/media/python-basics-3d-transparent-centered.1600697390a8.png',
-              name: 'Python',
+                  'https://yellowbirdpublications.com/wp-content/uploads/2022/10/Magic-with-Maths-7-Front-01-min.png',
+              name: 'Mathematics',
               brand: 'Asmita',
               description:
-                  "Python is widely considered among the easiest programming languages for beginners to learn. If you're interested in learning a programming language, Python is a good place to start.",
-              price: 19.99,
+                  "Mathematics is the science and study of quality, structure, space, and change. Mathematicians seek out patterns, formulate new conjectures, and establish truth by rigorous deduction from appropriately chosen axioms and definitions.",
+              price: 9.99,
               quantity: 5,
             ),
           ),

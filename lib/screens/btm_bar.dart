@@ -53,7 +53,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
       bottomNavigationBar: BottomNavigationBar(
           backgroundColor: _isDark
               ? Theme.of(context).cardColor
-              : Colors.white,
+              : Color.fromARGB(255, 96, 116, 211),
           type: BottomNavigationBarType.fixed,
           showSelectedLabels: false,
           showUnselectedLabels: false,

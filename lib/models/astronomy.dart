@@ -3,12 +3,12 @@ import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:onlinebookhubapp/services/utils.dart';
 
 
-class prod extends StatefulWidget {
+class astronomy extends StatefulWidget {
   @override
-  State<prod> createState() => _MyAppState();
+  State<astronomy> createState() => _MyAppState();
 }
 
-class _MyAppState extends State<prod> {
+class _MyAppState extends State<astronomy> {
   @override
   Widget build(BuildContext context) {
     final Color color = Utils(context).color;
@@ -33,11 +33,11 @@ class _MyAppState extends State<prod> {
           child: Center(
             child: ProductDetails(
               imageUrl:
-                  'https://files.realpython.com/media/python-basics-3d-transparent-centered.1600697390a8.png',
-              name: 'Python',
+                  'https://www.planetary-astronomy-and-imaging.com/wp-content/uploads/2020/12/couv1_small.png',
+              name: 'Astronomy',
               brand: 'Asmita',
               description:
-                  "Python is widely considered among the easiest programming languages for beginners to learn. If you're interested in learning a programming language, Python is a good place to start.",
+                  "Astronomy is widely considered among the easiest programming languages for beginners to learn. If you're interested in learning a programming language, Python is a good place to start.",
               price: 19.99,
               quantity: 5,
             ),

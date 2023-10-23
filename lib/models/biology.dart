@@ -1,22 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:onlinebookhubapp/screens/whatlist/whatchlist.dart';
 import 'package:onlinebookhubapp/services/utils.dart';
 
-
-class prod extends StatefulWidget {
+class biology extends StatefulWidget {
   @override
-  State<prod> createState() => _MyAppState();
+  State<biology> createState() => _MyAppState();
 }
 
-class _MyAppState extends State<prod> {
+class _MyAppState extends State<biology> {
   @override
   Widget build(BuildContext context) {
     final Color color = Utils(context).color;
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          leading: InkWell(
+    return Scaffold(
+      appBar: AppBar(
+        leading: InkWell(
           borderRadius: BorderRadius.circular(12),
           onTap: () {
             Navigator.pop(context);
@@ -26,20 +24,25 @@ class _MyAppState extends State<prod> {
             color: color,
           ),
         ),
-          title: Center(child: Text('Product Details')),
-        ),
-        body: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Center(
+        title: Center(child: Text('Product Details')),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Center(
+          child: GestureDetector(
+            onTap: () {
+              // Navigate to the WatchList page when the image is tapped
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => WatchScreen()));
+            },
             child: ProductDetails(
               imageUrl:
-                  'https://files.realpython.com/media/python-basics-3d-transparent-centered.1600697390a8.png',
-              name: 'Python',
+                  'https://www.theodist.com/Images/ProductImages/Large/78775.jpg',
+              name: 'Biology',
               brand: 'Asmita',
               description:
-                  "Python is widely considered among the easiest programming languages for beginners to learn. If you're interested in learning a programming language, Python is a good place to start.",
-              price: 19.99,
-              quantity: 5,
+                  "Biology is a branch of science that deals with living organisms and their vital processes. Biology encompasses diverse fields, including botany, conservation, ecology, evolution, genetics, marine biology, medicine, microbiology, molecular biology, physiology, and zoology.",
+              price: 39.99,
+              quantity: 4,
             ),
           ),
         ),

@@ -3,12 +3,12 @@ import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:onlinebookhubapp/services/utils.dart';
 
 
-class prod extends StatefulWidget {
+class chemistry extends StatefulWidget {
   @override
-  State<prod> createState() => _MyAppState();
+  State<chemistry> createState() => _MyAppState();
 }
 
-class _MyAppState extends State<prod> {
+class _MyAppState extends State<chemistry> {
   @override
   Widget build(BuildContext context) {
     final Color color = Utils(context).color;
@@ -33,13 +33,13 @@ class _MyAppState extends State<prod> {
           child: Center(
             child: ProductDetails(
               imageUrl:
-                  'https://files.realpython.com/media/python-basics-3d-transparent-centered.1600697390a8.png',
-              name: 'Python',
+                  'https://images.blinkist.io/images/books/5f0d636f6cee0700061678d1/1_1/470.jpg',
+              name: 'Chemistry',
               brand: 'Asmita',
               description:
-                  "Python is widely considered among the easiest programming languages for beginners to learn. If you're interested in learning a programming language, Python is a good place to start.",
-              price: 19.99,
-              quantity: 5,
+                  " Chemistry requires you to memorise a lot of formulas, equations, and reactions. Hence, you should make notes and practice them by writing them down to memorise Make a note of all the concepts, theories, and explanations as well.",
+              price: 12.99,
+              quantity: 7,
             ),
           ),
         ),

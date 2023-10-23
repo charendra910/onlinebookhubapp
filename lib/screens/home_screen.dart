@@ -3,13 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:onlinebookhubapp/inner_screens/feeds_screen.dart';
 import 'package:onlinebookhubapp/inner_screens/on_sale_screen.dart';
-import 'package:onlinebookhubapp/providers/dark_theme_provider.dart';
+import 'package:onlinebookhubapp/models/biology.dart';
+import 'package:onlinebookhubapp/models/chemistry.dart';
+import 'package:onlinebookhubapp/models/math.dart';
+import 'package:onlinebookhubapp/models/physic.dart';
 import 'package:onlinebookhubapp/services/global_methods.dart';
 import 'package:onlinebookhubapp/services/utils.dart';
 import 'package:onlinebookhubapp/widgets/feed_items.dart';
 import 'package:onlinebookhubapp/widgets/on_sale_widget.dart';
 import 'package:onlinebookhubapp/widgets/text_widget.dart';
-import 'package:provider/provider.dart';
+
+import '../models/product_detail1.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -103,13 +107,63 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: SizedBox(
                     height: size.height * 0.24,
                     child: ListView.builder(
-                        itemCount: 6,
+                        itemCount: 1,
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (ctx, index) {
-                          return OnSaleWidget(name: 'Harry Potter', price: '\$ 2.3', salePrice: '\$1.4', weight: '120',);
+                          return InkWell(
+                            onDoubleTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => prod()));
+                            },
+                            child: OnSaleWidget(
+                              image:
+                                  "https://m.media-amazon.com/images/I/418ow0JdGSL.jpg",
+                              name: 'Basic Python',
+                              price: '\$ 2.3',
+                              salePrice: '\$1.4',
+                              weight: '120',
+                            ),
+                          );
                         }),
                   ),
                 ),
+                Flexible(
+                  child: SizedBox(
+                    height: size.height * 0.24,
+                    child: ListView.builder(
+                        itemCount: 1,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (ctx, index) {
+                          return InkWell(
+                            onDoubleTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => biology()));
+                            },
+                            child: OnSaleWidget(
+                              image:
+                                  "https://www.theodist.com/Images/ProductImages/Large/78775.jpg",
+                              name: 'Advance Python',
+                              price: '\$ 4.3',
+                              salePrice: '\$1.8',
+                              weight: '160',
+                            ),
+                          );
+                        }),
+                  ),
+                ),
+
+                // Flexible(
+                //   child: SizedBox(
+                //     height: size.height * 0.24,
+                //     child: ListView.builder(
+                //         itemCount: 1,
+                //         scrollDirection: Axis.horizontal,
+                //         itemBuilder: (ctx, index) {
+                //           return OnSaleWidget(name: 'History', price: '\$ 6.3', salePrice: '\$3.4', weight: '400',);
+                //         }),
+                //   ),
+
+                // ),
               ],
             ),
             const SizedBox(
@@ -147,12 +201,56 @@ class _HomeScreenState extends State<HomeScreen> {
               physics: const NeverScrollableScrollPhysics(),
               crossAxisCount: 2,
               padding: EdgeInsets.zero,
-              //crossAxisSpacing: 10,
+              // crossAxisSpacing: 10,
               childAspectRatio: size.width / (size.height * 0.59),
-              children: List.generate(4, (index) {
-                return const FeedsWidget();
-              }),
-            ),
+              children: [
+                InkWell(
+                  onDoubleTap: () {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => chemistry()));
+                  },
+                  child: FeedsWidget(
+                      salePrice: '1.2',
+                      name: "Chemistry",
+                      image:
+                          'https://images.blinkist.io/images/books/5f0d636f6cee0700061678d1/1_1/470.jpg'),
+                ),
+                //Wrap the widget with InkWell onTap
+                InkWell(
+                  onDoubleTap: () {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => physic()));
+                  },
+                  child: FeedsWidget(
+                      salePrice: '2.5',
+                      name: "Physics",
+                      image:
+                          'https://5.imimg.com/data5/HX/TD/MY-14344381/nootan-physics-xii-book.png'),
+                ),
+                InkWell(
+                  onDoubleTap: () {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => biology()));
+                  },
+                  child: FeedsWidget(
+                      salePrice: '3.0',
+                      name: "Biology",
+                      image:
+                          'https://www.theodist.com/Images/ProductImages/Large/78775.jpg'),
+                ),
+                InkWell(
+                  onDoubleTap: () {
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) => maths()));
+                  },
+                  child: FeedsWidget(
+                      salePrice: '1.8',
+                      name: "Mathematics",
+                      image:
+                          'https://yellowbirdpublications.com/wp-content/uploads/2022/10/Magic-with-Maths-7-Front-01-min.png'),
+                ),
+              ],
+            )
           ],
         ),
       ),

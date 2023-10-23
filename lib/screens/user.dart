@@ -7,6 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:onlinebookhubapp/auth/login.dart';
 import 'package:onlinebookhubapp/providers/dark_theme_provider.dart';
+import 'package:onlinebookhubapp/screens/cart/cart_screen.dart';
+import 'package:onlinebookhubapp/screens/whatlist/view.dart';
+import 'package:onlinebookhubapp/screens/whatlist/whatchlist.dart';
 import 'package:onlinebookhubapp/widgets/text_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -115,29 +118,31 @@ class _UserScreenState extends State<UserScreen> {
                   color: color,
                 ),
                 _listTiles(
-                  title: 'Orders',
+                  title: 'Carts Details',
                   icon: IconlyLight.bag,
-                  onPressed: () {},
+                  onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>CartScreen()));
+                  },
                   color: color,
                 ),
                 _listTiles(
                   title: 'Wishlist',
                   icon: IconlyLight.heart,
-                  onPressed: () {},
+                  onPressed: () {
+                     Navigator.push(context, MaterialPageRoute(builder: (context)=>WatchScreen()));
+                  },
                   color: color,
                 ),
                 _listTiles(
                   title: 'Viewd',
                   icon: IconlyBold.show,
-                  onPressed: () {},
+                  onPressed: () {
+                                         Navigator.push(context, MaterialPageRoute(builder: (context)=>view()));
+
+                  },
                   color: color,
                 ),
-                _listTiles(
-                  title: 'Forget Password',
-                  icon: IconlyLight.unlock,
-                  onPressed: () {},
-                  color: color,
-                ),
+               
                 SwitchListTile(
                   title: TextWidget(
                     text: themeState.getDarkTheme ? 'Dark mode' : 'Light mode',

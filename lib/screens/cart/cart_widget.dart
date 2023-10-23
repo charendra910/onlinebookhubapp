@@ -1,30 +1,40 @@
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:cloud_firestore/cloud_firestore.dart'; // Import Firestore
 import 'package:onlinebookhubapp/services/utils.dart';
 import 'package:onlinebookhubapp/widgets/heart_btn.dart';
 import 'package:onlinebookhubapp/widgets/text_widget.dart';
 
 class CartWidget extends StatefulWidget {
-  const CartWidget({super.key});
+  final String name;
+  final String salePrice;
+  final String image;
+  final String quantity;
+
+  CartWidget({
+    required this.name,
+    required this.salePrice,
+    required this.image,
+    required this.quantity,
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<CartWidget> createState() => _CartWidgetState();
 }
 
 class _CartWidgetState extends State<CartWidget> {
-  final _quantityTextController = TextEditingController();
-  @override
-  void initState() {
-    _quantityTextController.text = '1';
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _quantityTextController.dispose();
-    super.dispose();
+  
+  void removeItemFromCart() {
+    FirebaseFirestore.instance
+        .collection('cart')
+        .where('name', isEqualTo: widget.name)
+        .get()
+        .then((querySnapshot) {
+      querySnapshot.docs.forEach((doc) {
+        doc.reference.delete(); 
+      });
+    });
   }
 
   @override
@@ -42,8 +52,6 @@ class _CartWidgetState extends State<CartWidget> {
               child: Container(
                 decoration: BoxDecoration(
                   color: Theme.of(context).cardColor.withOpacity(0.3),
-            
-            
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Row(
@@ -55,8 +63,7 @@ class _CartWidgetState extends State<CartWidget> {
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: FancyShimmerImage(
-                        imageUrl: 'https://getcodingkids.com/wp-content/uploads/2015/12/the-book.png',
-                       // imageUrl: productModel.imageUrl,
+                        imageUrl: widget.image,
                         boxFit: BoxFit.fill,
                       ),
                     ),
@@ -64,7 +71,7 @@ class _CartWidgetState extends State<CartWidget> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         TextWidget(
-                          text: 'Title',
+                          text: widget.name,
                           color: color,
                           textSize: 20,
                           isTitle: true,
@@ -72,49 +79,10 @@ class _CartWidgetState extends State<CartWidget> {
                         const SizedBox(
                           height: 16,
                         ),
-                        SizedBox(
-                          width: size.width * 0.3,
-                          child: Row(
-                            children: [
-                              _quantityController(
-                                fct: () {},
-                                color: Colors.red,
-                                icon: CupertinoIcons.minus,
-                              ),
-                              Flexible(
-                                flex: 1,
-                                child: TextField(
-                                  controller: _quantityTextController,
-                                  keyboardType: TextInputType.number,
-                                  maxLines: 1,
-                                  decoration: const InputDecoration(
-                                    focusedBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(),
-                                    ),
-                                  ),
-                                  inputFormatters: [
-                                    FilteringTextInputFormatter.allow(
-                                      RegExp('[0-9]'),
-                                    ),
-                                  ],
-                                  onChanged: (v) {
-                                    setState(() {
-                                      if (v.isEmpty) {
-                                        _quantityTextController.text = '1';
-                                      } else {
-                                        return;
-                                      }
-                                    });
-                                  },
-                                ),
-                              ),
-                              _quantityController(
-                                fct: () {},
-                                color: Colors.green,
-                                icon: CupertinoIcons.plus,
-                              ),
-                            ],
-                          ),
+                        TextWidget(
+                          text: 'Quantity: ${widget.quantity}',
+                          color: color,
+                          textSize: 18,
                         ),
                       ],
                     ),
@@ -124,20 +92,23 @@ class _CartWidgetState extends State<CartWidget> {
                       child: Column(
                         children: [
                           InkWell(
-                            onTap: () {},
+                            onTap:
+                                removeItemFromCart, 
                             child: const Icon(
-                              CupertinoIcons.cart_badge_minus,
+                              Icons.remove_shopping_cart,
                               color: Colors.red,
                               size: 20,
                             ),
                           ),
-                          const SizedBox(height: 5,
+                          const SizedBox(
+                            height: 5,
                           ),
                           const HeartBTN(),
-                          TextWidget(text: '\$0.29',
-                          color: color,
-                          textSize: 18,
-                          maxLines: 1,
+                          TextWidget(
+                            text: '\$${widget.salePrice}',
+                            color: color,
+                            textSize: 18,
+                            maxLines: 1,
                           ),
                         ],
                       ),
@@ -149,39 +120,8 @@ class _CartWidgetState extends State<CartWidget> {
                 ),
               ),
             ),
-          )
-        ],
-      ),
-    );
-  }
-
-  Widget _quantityController({
-    required Function fct,
-    required IconData icon,
-    required Color color,
-  }) {
-    return Flexible(
-      flex: 2,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 5),
-        child: Material(
-          color: color,
-          borderRadius: BorderRadius.circular(12),
-          child: InkWell(
-            borderRadius: BorderRadius.circular(12),
-            onTap: () {
-              fct();
-            },
-            child: Padding(
-              padding: const EdgeInsets.all(6.0),
-              child: Icon(
-                icon,
-                color: Colors.white,
-                size: 20,
-              ),
-            ),
           ),
-        ),
+        ],
       ),
     );
   }

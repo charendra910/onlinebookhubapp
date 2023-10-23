@@ -4,8 +4,10 @@ import 'package:onlinebookhubapp/auth/login.dart';
 import 'package:onlinebookhubapp/consts/theme_data.dart';
 import 'package:onlinebookhubapp/inner_screens/feeds_screen.dart';
 import 'package:onlinebookhubapp/inner_screens/on_sale_screen.dart';
+import 'package:onlinebookhubapp/models/product_detail1.dart';
 import 'package:onlinebookhubapp/providers/dark_theme_provider.dart';
 import 'package:onlinebookhubapp/screens/btm_bar.dart';
+import 'package:onlinebookhubapp/screens/home_screen.dart';
 import 'package:onlinebookhubapp/screens/welcome.dart';
 import 'package:provider/provider.dart';
 
@@ -56,6 +58,7 @@ class _MyAppState extends State<MyApp> {
             title: 'Flutter Demo',
             theme: Styles.themeData(themeProvider.getDarkTheme, context),            
             home:  SplashScreen(),
+           //home: SignInPage(),
             routes: {
               OnSaleScreen.routeName:(ctx) =>  OnSaleScreen(),
               FeedsScreen.routeName :(ctx) =>  FeedsScreen(),

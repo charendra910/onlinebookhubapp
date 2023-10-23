@@ -1,5 +1,7 @@
+// ignore_for_file: sort_child_properties_last
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:onlinebookhubapp/services/utils.dart';
@@ -8,7 +10,17 @@ import 'package:onlinebookhubapp/widgets/price_widget.dart';
 import 'package:onlinebookhubapp/widgets/text_widget.dart';
 
 class FeedsWidget extends StatefulWidget {
-  const FeedsWidget({super.key});
+  final String name;
+  final String salePrice;
+  final String image;
+
+  // Constructor with named parameters
+  FeedsWidget({
+    Key? key,
+    required this.name,
+    required this.salePrice,
+    required this.image,
+  }) : super(key: key);
 
   @override
   State<FeedsWidget> createState() => _FeedsWidgetState();
@@ -16,6 +28,7 @@ class FeedsWidget extends StatefulWidget {
 
 class _FeedsWidgetState extends State<FeedsWidget> {
   final _quantityTextController = TextEditingController();
+
   @override
   void initState() {
     _quantityTextController.text = "1";
@@ -28,6 +41,28 @@ class _FeedsWidgetState extends State<FeedsWidget> {
     super.dispose();
   }
 
+  Future<void> addToCart() async {
+    try {
+      int quantity = int.parse(_quantityTextController.text);
+      double totalPrice = double.parse(widget.salePrice) * quantity;
+
+      await FirebaseFirestore.instance.collection('cart').add({
+        'name': widget.name,
+        'salePrice': widget.salePrice,
+        'image': widget.image,
+        'quantity': quantity,
+        'totalPrice': totalPrice,
+      });
+
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text('Product added to cart')));
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Failed to add product to cart')));
+    }
+  }
+  
+
   @override
   Widget build(BuildContext context) {
     Size size = Utils(context).getScreenSize;
@@ -39,13 +74,14 @@ class _FeedsWidgetState extends State<FeedsWidget> {
         borderRadius: BorderRadius.circular(12),
         color: Theme.of(context).cardColor,
         child: InkWell(
-          onTap: () {},
+          onTap: () {
+            // Add your onTap action here (e.g., navigate to product details).
+          },
           borderRadius: BorderRadius.circular(12),
           child: Column(
             children: [
               FancyShimmerImage(
-                 imageUrl: 'https://static-00.iconduck.com/assets.00/open-book-icon-2048x2048-wuklhx59.png',
-                //imageUrl: productModel.imageUrl,
+                imageUrl: widget.image, // Use the provided image URL
                 height: size.width * 0.21,
                 width: size.width * 0.2,
                 boxFit: BoxFit.fill,
@@ -58,7 +94,7 @@ class _FeedsWidgetState extends State<FeedsWidget> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     TextWidget(
-                      text: 'Title',
+                      text: widget.name, // Display the product name
                       color: color,
                       textSize: 20,
                       isTitle: true,
@@ -75,8 +111,9 @@ class _FeedsWidgetState extends State<FeedsWidget> {
                     Flexible(
                       flex: 4,
                       child: PriceWidget(
-                        salePrice: '2.99',
-                        price: '5.9',
+                        salePrice: widget.salePrice, // Display the sale price
+                        price: widget
+                            .salePrice, // Display the regular price (you can change this)
                         textPrice: _quantityTextController.text,
                         isOnSale: true,
                       ),
@@ -102,36 +139,36 @@ class _FeedsWidgetState extends State<FeedsWidget> {
                             width: 5,
                           ),
                           Flexible(
-                            flex: 2,
+                              flex: 2,
                               child: TextFormField(
-                            controller: _quantityTextController,
-                            key: const ValueKey('10'),
-                            style: TextStyle(color: color, fontSize: 18),
-                            keyboardType: TextInputType.number,
-                            maxLines: 1,
-                            enabled: true,
-                            onChanged: (value){
-                              setState(() {
-                                
-                              });
-                            },
-                            inputFormatters: [
-                              FilteringTextInputFormatter.allow(
-                                RegExp('[0-9.]'),
-                              ),
-                            ],
-                          )),
+                                controller: _quantityTextController,
+                                key: const ValueKey('10'),
+                                style: TextStyle(color: color, fontSize: 18),
+                                keyboardType: TextInputType.number,
+                                maxLines: 1,
+                                enabled: true,
+                                onChanged: (value) {
+                                  setState(() {
+                                    // Handle quantity changes if needed
+                                  });
+                                },
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.allow(
+                                    RegExp('[0-9.]'),
+                                  ),
+                                ],
+                              )),
                         ],
                       ),
                     )
                   ],
                 ),
               ),
-             const  Spacer(),
+              const Spacer(),
               SizedBox(
                 width: double.infinity,
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: addToCart, // Call the addToCart function
                   child: TextWidget(
                     text: 'Add to cart',
                     color: color,
@@ -140,16 +177,15 @@ class _FeedsWidgetState extends State<FeedsWidget> {
                   ),
                   style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(
-                        Theme.of(context).cardColor),
+                        Theme.of(context).cardColor,
+                      ),
                       tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(12),
-                            bottomRight: Radius.circular(12),
-                          )
-                        )
-                      )),
+                          const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(12),
+                        bottomRight: Radius.circular(12),
+                      )))),
                 ),
               ),
             ],

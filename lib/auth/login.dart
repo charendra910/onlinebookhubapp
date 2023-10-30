@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:onlinebookhubapp/API/apis.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:onlinebookhubapp/screens/btm_bar.dart';
-import 'package:onlinebookhubapp/screens/home_screen.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({Key? key});
@@ -282,13 +281,11 @@ class _SignInPageState extends State<SignInPage> {
 
                                       if (signUpSuccess) {
                                         // Sign-up was successful, navigate to the LoginPage and show message
-                                        Navigator.of(context).push(
+                                        Navigator.push(
+                                          context,
                                           MaterialPageRoute(
-                                            builder: (BuildContext context) {
-                                              return LoginPage(
-                                                  signupSuccessful: true);
-                                            },
-                                          ),
+                                              builder: (context) =>
+                                                  LoginPage(signupSuccessful: true,)), // Replace 'HomePage()' with the appropriate constructor for your 'HomePage' widget
                                         );
                                       } else {
                                         // Sign-up failed
